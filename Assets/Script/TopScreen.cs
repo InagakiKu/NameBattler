@@ -9,7 +9,7 @@ public class TopScreen : MonoBehaviour
     {
         switch (transform.name)
         {
-            case "BackButton":
+            case "ListButton":
                 Debug.Log("「キャラ一覧」を押した");
                 break;
             case "StartButton":
