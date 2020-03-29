@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
 	// =======================
 	// フィールド変数
@@ -227,7 +229,7 @@ public class Player : MonoBehaviour
 	/**
 	 * 名前(name)からキャラクターに必要なパラメータを生成する
 	 */
-	protected void MakeCharacter()
+	protected virtual void MakeCharacter()
 	{
 		// ジョブごとにオーバーライドして処理を記述してください
 	}
@@ -240,28 +242,37 @@ public class Player : MonoBehaviour
 	 */
 	protected int GetNumber(int index, int max)
 	{
+		Debug.Log("GetNumberが呼び出されました");
 		try
 		{
-			// 名前からハッシュ値を生成する（40桁）
-			byte[] result = System.Text.Encoding.UTF8.GetBytes(this.name);
-			System.Security.Cryptography.SHA1 sha1 = System.Security.Cryptography.SHA1.Create();
-			byte[] hash = sha1.ComputeHash(result);
+			Debug.Log(this.name);
+			// バイト配列に
+			byte[] byteValue = Encoding.UTF8.GetBytes(this.name);
+			
+			// ハッシュ値の取得
+			SHA1 crypto = new SHA1CryptoServiceProvider();
+			byte[] hashValue = crypto.ComputeHash(byteValue);
 
-			sha1.Clear();
+			StringBuilder hashedText = new StringBuilder();
+			for (int i = 0; i < hashValue.Length; i++)
+			{
+				hashedText.AppendFormat("{0:x2}", hashValue[i]);
+			}
+			Debug.Log("ハッシュ値：" + hashedText.ToString());
+			Debug.Log("文字数：" + hashedText.Length.ToString());
 
-			string digest = string.Format("x40", hash);
+			String hex = hashedText.ToString().Substring(index*2, 2);
+			Debug.Log(hex);
 
-			// ハッシュ値から指定された位置の文字列を取り出す（２文字分）
-			string hex = digest.Substring(index * 2, index * 2 + 2);
-
-			// 取り出した文字列（16進数）を数値に変換する
-			int val = int.Parse(hex);
-			return val * max / 255;
+			int value = Int16.Parse(hex, System.Globalization.NumberStyles.HexNumber);
+			Debug.Log(value);
+			return value * max / 255;
 		}
 		catch (Exception e)
 		{
 			// エラー
 			Console.WriteLine("例外をキャッチしました");
+			Debug.Log("例外をキャッチしました");
 			Console.WriteLine(e);
 		}
 		return 0;
@@ -298,7 +309,7 @@ public class Player : MonoBehaviour
 	 * @param attacker : 攻撃側プレーヤー
 	 * @param defender : 防御側プレイヤー
 	 */
-	public void Attack(Player ActivePlayer, List<Player> passiveParty)
+	public virtual void Attack(Player ActivePlayer, List<Player> passiveParty)
 	{
 		// ジョブごとにオーバーライドして処理を記述してください
 	}
@@ -306,13 +317,13 @@ public class Player : MonoBehaviour
 	/**
 	 *対象プレイヤー(passivePlayer)に回復を行う
 	 */
-	public bool HealHP(Player ActivePlayer, List<Player> passiveParty)
+	public virtual bool HealHP(Player ActivePlayer, List<Player> passiveParty)
 	{
 		// ジョブごとにオーバーライドして処理を記述してください
 		return false;
 	}
 
-	public bool HealDebuff(Player ActivePlayer, Player passivePlayer)
+	public virtual bool HealDebuff(Player ActivePlayer, Player passivePlayer)
 	{
 		// ジョブごとにオーバーライドして処理を記述してください
 		return false;

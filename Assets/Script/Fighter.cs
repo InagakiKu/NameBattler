@@ -9,13 +9,13 @@ public class Fighter : Player
 	// =======================
 	// フィールド変数
 	// =======================
-
 	// =======================
 	// コンストラクタ
 	// =======================
-	public Fighter(string name) :base(name)
+	public Fighter(string name):base(name)
 	{
-
+		this.name = name;
+		MakeCharacter();
 	}
 
 	// =======================
@@ -28,18 +28,18 @@ public class Fighter : Player
 	/**
 	 * 名前(name)からキャラクターに必要なパラメータを生成する
 	 */
-	protected void MakeCharacter()
+	protected override void MakeCharacter()
 	{
 		// 戦士のパラメータを名前から生成する
-		this.defaultHP = (GetNumber(0, 30) + 10) * 10;
-		this.defaultMP = GetNumber(1, 100) * 0;
-		this.hp = defaultHP;
-		this.mp = defaultMP;
+		this.defaultHP = (base.GetNumber(0, 30) + 10) * 10;
+		this.defaultMP = base.GetNumber(1, 100) * 0;
+		this.hp = base.defaultHP;
+		this.mp = base.defaultMP;
 
-		this.str = GetNumber(2, 100) + 30;
-		this.def = GetNumber(3, 100) + 30;
-		this.luck = GetNumber(4, 100) + 1;
-		this.agi = GetNumber(5, 50) + 1;
+		this.str = base.GetNumber(2, 100) + 30;
+		this.def = base.GetNumber(3, 100) + 30;
+		this.luck = base.GetNumber(4, 100) + 1;
+		this.agi = base.GetNumber(5, 50) + 1;
 
 		this.paralyze = false;
 		this.poison = false;
@@ -62,7 +62,7 @@ public class Fighter : Player
 	 * @param attacker {@inheritDoc}
 	 * @param defender {@inheritDoc}
 	 */
-	public void Attack(Player attacker, List<Player> passiveParty)
+	public override void Attack(Player attacker, List<Player> passiveParty)
 	{
 
 		Player passivePlayer = passiveParty[UnityEngine.Random.Range(0, passiveParty.Count-1)];
