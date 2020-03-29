@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 342735757}
   - component: {fileID: 342735758}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: WizardToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,11 +340,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1899299076}
   toggleTransition: 1
   graphic: {fileID: 477640720}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1598905914}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &409338681
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 600936690}
   - component: {fileID: 600936691}
   m_Layer: 5
-  m_Name: Toggle (2)
+  m_Name: PriestToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -648,11 +648,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 751604239}
   toggleTransition: 1
   graphic: {fileID: 1846449078}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1598905914}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &652284874
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,8 +665,9 @@ GameObject:
   - component: {fileID: 652284878}
   - component: {fileID: 652284877}
   - component: {fileID: 652284876}
+  - component: {fileID: 652284879}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CreateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,7 +735,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 652284877}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 652284879}
+        m_MethodName: ButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &652284877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,6 +783,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652284874}
   m_CullTransparentMesh: 0
+--- !u!114 &652284879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652284874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de766e25c6214c54895bc8ff310f2ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 252848153}
+  toggleGroup: {fileID: 1598905914}
 --- !u!1 &716787211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1033,7 @@ GameObject:
   - component: {fileID: 910285930}
   - component: {fileID: 910285929}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: UITextJob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1320,7 +1346,7 @@ GameObject:
   - component: {fileID: 1434168940}
   - component: {fileID: 1434168941}
   m_Layer: 5
-  m_Name: Toggle (3)
+  m_Name: HeroToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1389,11 +1415,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1919781638}
   toggleTransition: 1
   graphic: {fileID: 716787213}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1598905914}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1598905911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598905912}
   - component: {fileID: 1598905913}
+  - component: {fileID: 1598905914}
   m_Layer: 5
   m_Name: FighterToggle
   m_TagString: Untagged
@@ -1474,11 +1501,24 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1695150549}
   toggleTransition: 1
   graphic: {fileID: 499324121}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1598905914}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &1598905914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598905911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &1695150547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,7 +1605,7 @@ GameObject:
   - component: {fileID: 1696477221}
   - component: {fileID: 1696477220}
   m_Layer: 5
-  m_Name: Text
+  m_Name: UITextName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2539,7 +2579,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5684433072807631020}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8871357735261130889}
+        m_MethodName: ButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &7755097926300916942
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2643,6 +2694,7 @@ GameObject:
   - component: {fileID: 3284825945635170278}
   - component: {fileID: 5684433072807631020}
   - component: {fileID: 7404432987871475900}
+  - component: {fileID: 8871357735261130889}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -2650,6 +2702,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8871357735261130889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8871357735261130888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de766e25c6214c54895bc8ff310f2ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
+  toggleGroup: {fileID: 0}
 --- !u!1 &9188462017071300582
 GameObject:
   m_ObjectHideFlags: 0

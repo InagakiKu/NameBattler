@@ -23,4 +23,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ResultScreen.unity
     guid: e5164f5d5d92ba54d9ff287bf3e617eb
+  - enabled: 1
+    path: Assets/Scenes/CharacterList.unity
+    guid: 1c9455c624c86cc4fb54e403c103617e
+  - enabled: 1
+    path: Assets/Scenes/CharacterDetails.unity
+    guid: 07004e5399417354bbeb908d6f52cf25
+  - enabled: 1
+    path: Assets/Scenes/CharacterCreate.unity
+    guid: f1dc5ebce0f54db4aaac50316a3a8e13
+  - enabled: 1
+    path: Assets/Scenes/CreateResult.unity
+    guid: 8af7eeb8b3767144c802e432dc6dc223
   m_configObjects: {}
