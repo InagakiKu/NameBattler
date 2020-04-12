@@ -6,11 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PanelConfirm : MonoBehaviour
 {
-    /// <summary>
-    ///  ダイアログのキャンバス
-    /// </summary>
-    [SerializeField] Canvas canvasDialog;
-    
+
+    [SerializeField] Canvas canvasDialog; // ダイアログのキャンバス
+
 
     // Start is called before the first frame update
     void Start()

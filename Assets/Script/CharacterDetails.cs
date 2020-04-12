@@ -18,7 +18,7 @@ public class CharacterDetails : MonoBehaviour
         Debug.Log("「キャラクター詳細画面」に遷移した");
 
         this.name = CharacterList.CharacterName;
-
+        Debug.Log("name" + this.name);
         // DBからデータを取得する
         SqliteDatabase sqlDB = new SqliteDatabase("namebattler.db");
         string query = string.Format("select * from characters where name ='{0}'", this.name);
