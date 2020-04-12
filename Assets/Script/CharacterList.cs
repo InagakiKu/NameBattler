@@ -8,6 +8,9 @@ public class CharacterList : MonoBehaviour
 {
     [HideInInspector]public static string CharacterName { set; get; }
 
+    /// <summary>
+    /// ボタンクリック時の処理
+    /// </summary>
     public void ButtonClick()
     {
         switch (transform.name)

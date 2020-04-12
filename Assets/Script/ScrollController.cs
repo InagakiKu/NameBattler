@@ -66,9 +66,8 @@ public class ScrollController : MonoBehaviour
 
 
             texts = character.GetComponentsInChildren<Text>();
-            button = character.GetComponentInChildren<Button>().GetComponent<NodeButton>();
-            button.characterName = name;
             texts[0].text = name;
+
             if (job == 0)
             {
                 texts[1].text = "戦士";

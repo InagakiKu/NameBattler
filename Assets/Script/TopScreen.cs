@@ -11,6 +11,7 @@ public class TopScreen : MonoBehaviour
         {
             case "ListButton":
                 Debug.Log("「キャラ一覧」を押した");
+                SceneManager.LoadScene("CharacterList");
                 break;
             case "StartButton":
                 Debug.Log("「バトル開始」を押した");

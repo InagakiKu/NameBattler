@@ -33,12 +33,12 @@ public class Priest : Player
 	protected void MakeCharacter()
 	{
 		// 戦士のパラメータを名前から生成する
-		this.defaultHP = (GetNumber(0, 12) + 8) * 10;
-		this.defaultMP = GetNumber(1, 50) + 30;
-		this.str = (GetNumber(2, 50) + 1);
-		this.def = GetNumber(3, 50) + 1;
-		this.luck = GetNumber(4, 100);
-		this.agi = GetNumber(5, 40) + 20;
+		this.defaultHP = (base.GetNumber(0, 12) + 8) * 10;
+		this.defaultMP = base.GetNumber(1, 50) + 30;
+		this.str = (base.GetNumber(2, 50) + 1);
+		this.def = base.GetNumber(3, 50) + 1;
+		this.luck = base.GetNumber(4, 100);
+		this.agi = base.GetNumber(5, 40) + 20;
 		this.hp = defaultHP;
 		this.mp = defaultMP;
 

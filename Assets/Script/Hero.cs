@@ -31,15 +31,15 @@ public class Hero : Player
 	protected void MakeCharacter()
 	{
 		// 戦士のパラメータを名前から生成する
-		this.defaultHP = (GetNumber(0, 30) + 10) * 10;
-		this.defaultMP = GetNumber(1, 30) + 20;
+		this.defaultHP = (base.GetNumber(0, 30) + 10) * 10;
+		this.defaultMP = base.GetNumber(1, 30) + 20;
 		this.hp = defaultHP;
 		this.mp = defaultMP;
 
-		this.str = GetNumber(2, 70) + 30;
-		this.def = GetNumber(3, 70) + 30;
-		this.luck = GetNumber(4, 100) + 1;
-		this.agi = GetNumber(5, 50);
+		this.str = base.GetNumber(2, 70) + 30;
+		this.def = base.GetNumber(3, 70) + 30;
+		this.luck = base.GetNumber(4, 100) + 1;
+		this.agi = base.GetNumber(5, 50);
 		this.paralyze = false;
 		this.poison = false;
 		this.active = true;

@@ -15,7 +15,8 @@ public class Wizard : Player
 	// =======================
 	public Wizard(string name) :base(name)
 	{
-
+		this.name = name;
+		MakeCharacter();
 	}
 
 	// =======================
@@ -31,15 +32,16 @@ public class Wizard : Player
 	protected void MakeCharacter()
 	{
 		// 魔術師のパラメータを名前から生成する
-		this.defaultHP = (GetNumber(0, 10) + 5) * 10;
-		this.defaultMP = GetNumber(1, 50) + 30;
-		this.hp = defaultHP;
-		this.mp = defaultMP;
+		this.defaultHP = (base.GetNumber(0, 10) + 5) * 10;
+		this.defaultMP = base.GetNumber(1, 50) + 30;
+		this.hp = base.defaultHP;
+		this.mp = base.defaultMP;
 
-		this.str = GetNumber(2, 50) + 1;
-		this.def = GetNumber(3, 50) + 1;
-		this.luck = GetNumber(4, 100);
-		this.agi = GetNumber(5, 40) + 20;
+		this.str = base.GetNumber(2, 50) + 1;
+		this.def = base.GetNumber(3, 50) + 1;
+		this.luck = base.GetNumber(4, 100) + 1;
+		this.agi = base.GetNumber(5, 40) + 20;
+		
 		this.paralyze = false;
 		this.poison = false;
 		this.active = true;
@@ -47,8 +49,14 @@ public class Wizard : Player
 
 	}
 
-	// ↑を修正して魔法使い用のパラメーターに直す
-	// ↓を修正して通常攻撃か魔法攻撃を行うようにする
+	// =======================
+	// private メソッド
+	// =======================
+
+	// =======================
+	// public メソッド
+	// =======================
+
 	/**
 	 * {@inheritDoc}<br>
 	 * 攻撃側プレイヤー(atacker)のMPが魔法の消費MPに足りている場合は
