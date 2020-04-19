@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class BattleStart : MonoBehaviour
 {
-    public Player[] enemyMembers;
-    public Player[] partyMembers;
+    [HideInInspector] public static Party enemyMembers;
+    [HideInInspector] public static Party partyMembers;
     public Text[] texts;
 
     public void Start()
@@ -15,12 +16,12 @@ public class BattleStart : MonoBehaviour
         // エネミーの準備
         string[] enemyName= new string[3];
         int[] enemyJob = new int[3] { 0, 0, 0 };
-        enemyMembers = new Player[3];
+        enemyMembers = new Party();
 
         // プレイヤーの準備
         string[] playerName = new string[3];
         int[] playerJob = new int[3] { 0, 0, 0 };
-        partyMembers = new Player[3];
+        partyMembers = new Party();
 
 
         // DB名を指定して接続
@@ -37,7 +38,7 @@ public class BattleStart : MonoBehaviour
             // SQL文実行
             DataTable dataTable = sqlDB.ExecuteQuery(query);
 
-            // 名前を求める
+            // 名前を求める 
             foreach (DataRow dr in dataTable.Rows)
             {
                 enemyName[i] = (string)dr["name"];
@@ -54,24 +55,21 @@ public class BattleStart : MonoBehaviour
             switch (enemyJob[i])
             {
                 case 0:
-                    enemyMembers[i] = new Fighter(enemyName[i]);
+                    enemyMembers.AppendPlayer(new Fighter(enemyName[i]));
                     Debug.Log("戦士を作成しました");
                    
                     break;
                 case 1:
-                    player = new Wizard(enemyName[i]);
-                    Debug.Log("魔法使いを作成しました");
-                    enemyMembers[i] = player;
+                    enemyMembers.AppendPlayer(new Wizard(enemyName[i]));
+                    Debug.Log("魔法使いを作成しました ");
                     break;
                 case 2:
-                    player = new Priest(enemyName[i]);
+                    enemyMembers.AppendPlayer(new Priest(enemyName[i]));
                     Debug.Log("僧侶を作成しました");
-                    enemyMembers[i] = player;
                     break;
                 case 3:
-                    player = new Hero(enemyName[i]);
+                    enemyMembers.AppendPlayer(new Hero(enemyName[i]));
                     Debug.Log("勇者を作成しました");
-                    enemyMembers[i] = player;
                     break;
                 default:
                     Debug.Log("デフォルト通過");
@@ -87,7 +85,7 @@ public class BattleStart : MonoBehaviour
             var node = GameObject.Find(objectName);
             texts = node.GetComponentsInChildren<Text>();
 
-            texts[0].text = enemyMembers[i].GetName();
+            texts[0].text = enemyMembers.GetPlayer(i).GetName();
             
             if (enemyJob[i] == 0)
             {
@@ -107,7 +105,7 @@ public class BattleStart : MonoBehaviour
                 texts[1].text = "勇者";
             }
 
-            texts[2].text = string.Format("HP: {0} MP: {1} STR: {2} DEF: {3} AGI: {4}", enemyMembers[i].GetHP(), enemyMembers[i].GetMP(), enemyMembers[i].GetSTR(), enemyMembers[i].GetDEF(), enemyMembers[i].GetAGI());
+            texts[2].text = string.Format("HP: {0} MP: {1} STR: {2} DEF: {3} AGI: {4}", enemyMembers.GetPlayer(i).GetHP(), enemyMembers.GetPlayer(i).GetMP(), enemyMembers.GetPlayer(i).GetSTR(), enemyMembers.GetPlayer(i).GetDEF(), enemyMembers.GetPlayer(i).GetAGI());
         }
 
         // DB名を指定して接続
@@ -139,24 +137,21 @@ public class BattleStart : MonoBehaviour
             switch (playerJob[i])
             {
                 case 0:
-                    partyMembers[i] = new Fighter(playerName[i]);
+                    partyMembers.AppendPlayer(new Fighter(playerName[i]));
                     Debug.Log("戦士を作成しました");
 
                     break;
                 case 1:
-                    player = new Wizard(playerName[i]);
+                    partyMembers.AppendPlayer(new Wizard(playerName[i]));
                     Debug.Log("魔法使いを作成しました");
-                    partyMembers[i] = player;
                     break;
                 case 2:
-                    player = new Priest(playerName[i]);
+                    partyMembers.AppendPlayer(new Priest(playerName[i]));
                     Debug.Log("僧侶を作成しました");
-                    partyMembers[i] = player;
                     break;
                 case 3:
-                    player = new Hero(playerName[i]);
+                    partyMembers.AppendPlayer(new Hero(playerName[i]));
                     Debug.Log("勇者を作成しました");
-                    partyMembers[i] = player;
                     break;
                 default:
                     Debug.Log("デフォルト通過");
@@ -172,7 +167,7 @@ public class BattleStart : MonoBehaviour
             var node = GameObject.Find(objectName);
             texts = node.GetComponentsInChildren<Text>();
 
-            texts[0].text = partyMembers[i].GetName();
+            texts[0].text = partyMembers.GetPlayer(i).GetName();
 
             if (playerJob[i] == 0)
             {
@@ -192,8 +187,9 @@ public class BattleStart : MonoBehaviour
                 texts[1].text = "勇者";
             }
 
-            texts[2].text = string.Format("HP: {0} MP: {1} STR: {2} DEF: {3} AGI: {4}", partyMembers[i].GetHP(), partyMembers[i].GetMP(), partyMembers[i].GetSTR(), partyMembers[i].GetDEF(), partyMembers[i].GetAGI());
+            texts[2].text = string.Format("HP: {0} MP: {1} STR: {2} DEF: {3} AGI: {4}", partyMembers.GetPlayer(i).GetHP(), partyMembers.GetPlayer(i).GetMP(), partyMembers.GetPlayer(i).GetSTR(), partyMembers.GetPlayer(i).GetDEF(), partyMembers.GetPlayer(i).GetAGI());
         }
+        Debug.Log("表示終了");
     }
 
     public void ButtonClick()
