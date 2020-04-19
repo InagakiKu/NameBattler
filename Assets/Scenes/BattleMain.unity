@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 177290969}
   - component: {fileID: 177290968}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: Party2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 202503935}
   - component: {fileID: 202503934}
   m_Layer: 0
-  m_Name: Canvas (1)
+  m_Name: PartyMembers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -653,7 +653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00026217775}
+  m_AnchoredPosition: {x: 0, y: -0.000022652239}
   m_SizeDelta: {x: 0, y: 450}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &374147414
@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 474774381}
   - component: {fileID: 474774380}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Party1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1027,7 +1027,7 @@ GameObject:
   - component: {fileID: 567456891}
   - component: {fileID: 567456890}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1102,7 +1102,7 @@ GameObject:
   - component: {fileID: 627409606}
   - component: {fileID: 627409605}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: EnemyMembers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1385,7 +1385,7 @@ GameObject:
   - component: {fileID: 898592739}
   - component: {fileID: 898592738}
   m_Layer: 0
-  m_Name: Image (2)
+  m_Name: Enemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1606,7 +1606,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1885802170}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.78240645
+  m_Size: 0.9998626
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1659,7 +1659,7 @@ GameObject:
   - component: {fileID: 1328771124}
   - component: {fileID: 1328771123}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1887,7 +1887,7 @@ GameObject:
   - component: {fileID: 1740174508}
   - component: {fileID: 1740174507}
   m_Layer: 0
-  m_Name: Image (2)
+  m_Name: Party3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
