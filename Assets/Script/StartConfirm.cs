@@ -11,6 +11,7 @@ public class StartConfirm : MonoBehaviour
     [SerializeField] Canvas canvasDialog; // ダイアログのキャンバス
     private Text[] texts;
     [HideInInspector] public static string[] SelectCharacters { set;  get; }
+    [HideInInspector] public static int toggleCount; 
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class StartConfirm : MonoBehaviour
 
     public void ButtonClick()
     {
-        int toggleCount = 0;
+        toggleCount = 0;
 
         switch (transform.name)
         {
@@ -38,7 +39,7 @@ public class StartConfirm : MonoBehaviour
                 {
 
                     SelectCharacters = new string[toggleCount];
-                    int selectedCharacters = 2;
+                    int selectedCharacters = toggleCount-1;
                     foreach (Toggle toggle in UnityEngine.Object.FindObjectsOfType(typeof(Toggle)))
                     {
                         if (toggle.isOn) {

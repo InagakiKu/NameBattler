@@ -10,17 +10,20 @@ public class BattleStart : MonoBehaviour
     [HideInInspector] public static Party enemyMembers;
     [HideInInspector] public static Party partyMembers;
     public Text[] texts;
+    private int playerCount;
 
     public void Start()
     {
+        playerCount = StartConfirm.toggleCount;
+
         // エネミーの準備
         string[] enemyName= new string[3];
-        int[] enemyJob = new int[3] { 0, 0, 0 };
+        int[] enemyJob = new int[3];
         enemyMembers = new Party();
 
         // プレイヤーの準備
-        string[] playerName = new string[3];
-        int[] playerJob = new int[3] { 0, 0, 0 };
+        string[] playerName = new string[playerCount];
+        int[] playerJob = new int[playerCount] ;
         partyMembers = new Party();
 
 
@@ -111,8 +114,10 @@ public class BattleStart : MonoBehaviour
         // DB名を指定して接続
         sqlDB = new SqliteDatabase("namebattler.db");
 
+        Debug.Log(playerCount);
+
         // 名前と職業の決定
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < playerCount; i++)
         {
             // SQL文の作成
             string query = string.Format("select name,job from characters where name = '{0}'", StartConfirm.SelectCharacters[i]);
@@ -130,7 +135,7 @@ public class BattleStart : MonoBehaviour
             Debug.Log(string.Format("作成したPlayerの名前：{0} 職業：{1}", playerName[i], playerJob[i]));
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < playerCount; i++)
         {
             Player player = null;
 
@@ -160,7 +165,7 @@ public class BattleStart : MonoBehaviour
         }
 
         // パーティー情報の表示
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < playerCount; i++)
         {
             string objectName = string.Format("Party{0}", i + 1);
             Debug.Log("検索するオブジェクト名" + objectName);
