@@ -124,8 +124,8 @@ public class Party : MonoBehaviour
 						 where x.GetActive()
 						 select x;
 
-			result = from a in members
-					 orderby a.GetAGI()
+			result = from a in result
+					 orderby a.GetAGI() descending
 					 select a;
 
 			return result.Distinct().ToList()[0];

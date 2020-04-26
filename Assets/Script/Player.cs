@@ -288,11 +288,13 @@ public class Player
 		/**
 		 * 現在のステータスを System.out で表示する
 		 */
-		public void PrintStatus()
+		public string PrintStatus()
 		{
+			string status = "";
+			status = string.Format("{0}(HP={1}/{2} : MP={3}/{4} : STR={5} : DEF={6} : LUCK={7} : AGI={8})\n", this.name, this.hp, this.defaultHP, this.mp, this.defaultMP, this.str, this.def, this.luck, this.agi);
+		return status;
+		}	
 
-			Console.WriteLine(string.Format("{0}(HP={1}/{2} : MP={3}/{4} : STR={5} : DEF={6} : LUCK={7} : AGI={8})\n", this.name, this.hp, this.defaultHP, this.mp, this.defaultMP, this.str, this.def, this.luck, this.agi));
-		}
 		/**
 		 * Playerの行動を決定し行う
 		 *
