@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Strategy : MonoBehaviour
+public interface Strategy
 {
-	public void StartegyAction(Player activePlayer, Party myParty, Party enemyParty)
-	{
-	}
+	void StrategyAction(Player activePlayer, Party myParty, Party enemyParty);
+
 }

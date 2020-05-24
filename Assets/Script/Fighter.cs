@@ -66,12 +66,12 @@ public class Fighter : Player
 		{
 
 			Player passivePlayer = passiveParty[UnityEngine.Random.Range(0, passiveParty.Count - 1)];
-			// 与えるダメージを求める
-			Console.WriteLine(attacker.GetName() + "の攻撃！");
+		// 与えるダメージを求める
+			LogText.AddLog(string.Format("{0} の攻撃！", attacker.GetName()));
 			int damage = attacker.CalcDamage(passivePlayer);
 
-			// 求めたダメージを対象プレイヤーに与える
-			Console.WriteLine(passivePlayer.GetName() + "に" + damage + "のダメージ！");
+		// 求めたダメージを対象プレイヤーに与える
+			LogText.AddLog(string.Format("{0}に {1} のダメージ！", passivePlayer.GetName(), damage));
 			passivePlayer.Damage(damage);
 
 			passivePlayer.Down();

@@ -66,8 +66,8 @@ public class Heal : Magic
 
 			activePlayer.UseMP(this.usemp);
 
-			Console.WriteLine(activePlayer.GetName() + " の " + this.name);
-			Console.WriteLine(passivePlayer.GetName() + " の HP が " + this.recoverhp + " 回復した！");
+			LogText.AddLog(string.Format("{0} の {1}！", activePlayer.GetName(), this.name));
+			LogText.AddLog(string.Format("{0} の HP が  {1}　回復した！", passivePlayer.GetName(), this.recoverhp));
 
 			passivePlayer.RecoverHP(this.recoverhp);
 

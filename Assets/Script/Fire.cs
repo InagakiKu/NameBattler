@@ -60,8 +60,8 @@ public class Fire : Magic
 
 			activePlayer.UseMP(this.usemp);
 
-			Console.WriteLine(activePlayer.GetName() + " の " + this.name + "！");
-			Console.WriteLine(passivePlayer.GetName() + " に " + damage + " のダメージ！");
+			LogText.AddLog(string.Format("{0} の {1}！", activePlayer.GetName(), this.name));
+			LogText.AddLog(string.Format("{0} に　{1｝ のダメージ！", passivePlayer.GetName(), damage));
 
 			passivePlayer.Damage(damage);
 		}

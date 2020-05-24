@@ -60,12 +60,12 @@ public class Priest : Player
 
 			Player passivePlayer = passiveMembers[UnityEngine.Random.Range(0, passiveMembers.Count - 1)];
 
-			// 与えるダメージを求める
-			Console.WriteLine(activePlayer.GetName() + "　の　攻撃！");
+		// 与えるダメージを求める
+			LogText.AddLog(string.Format("{0} の 攻撃！", activePlayer.GetName()));
 			int damage = activePlayer.CalcDamage(passivePlayer);
 
 			// 求めたダメージを対象プレイヤーに与える
-			Console.WriteLine(passivePlayer.GetName() + "　に　" + damage + "　のダメージ！");
+			LogText.AddLog(string.Format("{0} に　{1｝ のダメージ！", passivePlayer.GetName(), damage));
 			passivePlayer.Damage(damage);
 
 			passivePlayer.Down();

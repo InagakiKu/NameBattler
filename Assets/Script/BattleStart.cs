@@ -31,7 +31,7 @@ public class BattleStart : MonoBehaviour
         SqliteDatabase sqlDB = new SqliteDatabase("master.db");
 
 
-        // 名前と職業の決定
+        // 敵の名前と職業の決定
         for (int i = 0; i < 3; i++)
         {
             // SQL文の作成
@@ -60,25 +60,29 @@ public class BattleStart : MonoBehaviour
                 case 0:
                     enemyMembers.AppendPlayer(new Fighter(enemyName[i]));
                     Debug.Log("戦士を作成しました");
-                   
+                    enemyMembers.GetPlayer(i).SetMyParty(enemyMembers);
                     break;
                 case 1:
                     enemyMembers.AppendPlayer(new Wizard(enemyName[i]));
                     Debug.Log("魔法使いを作成しました ");
+                    enemyMembers.GetPlayer(i).SetMyParty(enemyMembers);
                     break;
                 case 2:
                     enemyMembers.AppendPlayer(new Priest(enemyName[i]));
                     Debug.Log("僧侶を作成しました");
+                    enemyMembers.GetPlayer(i).SetMyParty(enemyMembers);
                     break;
                 case 3:
                     enemyMembers.AppendPlayer(new Hero(enemyName[i]));
                     Debug.Log("勇者を作成しました");
+                    enemyMembers.GetPlayer(i).SetMyParty(enemyMembers);
                     break;
                 default:
                     Debug.Log("デフォルト通過");
                     break;
             }
         }
+
 
         // エネミー情報の表示
         for (int i = 0; i < 3; i++)
@@ -144,19 +148,22 @@ public class BattleStart : MonoBehaviour
                 case 0:
                     partyMembers.AppendPlayer(new Fighter(playerName[i]));
                     Debug.Log("戦士を作成しました");
-
+                    partyMembers.GetPlayer(i).SetMyParty(partyMembers);
                     break;
                 case 1:
                     partyMembers.AppendPlayer(new Wizard(playerName[i]));
                     Debug.Log("魔法使いを作成しました");
+                    partyMembers.GetPlayer(i).SetMyParty(partyMembers);
                     break;
                 case 2:
                     partyMembers.AppendPlayer(new Priest(playerName[i]));
                     Debug.Log("僧侶を作成しました");
+                    partyMembers.GetPlayer(i).SetMyParty(partyMembers);
                     break;
                 case 3:
                     partyMembers.AppendPlayer(new Hero(playerName[i]));
                     Debug.Log("勇者を作成しました");
+                    partyMembers.GetPlayer(i).SetMyParty(partyMembers);
                     break;
                 default:
                     Debug.Log("デフォルト通過");

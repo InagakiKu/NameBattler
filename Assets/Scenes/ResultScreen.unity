@@ -177,7 +177,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8c8bbacf6f6baf341bdba4080e3a7cc7, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8c8bbacf6f6baf341bdba4080e3a7cc7, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 697611098}
   - component: {fileID: 697611097}
   - component: {fileID: 697611096}
+  - component: {fileID: 697611099}
   m_Layer: 5
   m_Name: NextButton
   m_TagString: Untagged
@@ -356,7 +357,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 697611097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 697611099}
+        m_MethodName: ButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &697611097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +405,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697611094}
   m_CullTransparentMesh: 0
+--- !u!114 &697611099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697611094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b805afd225f3f469161992d7a6a4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &975558349
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,9 +473,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 125
-    m_FontStyle: 3
+    m_Font: {fileID: 12800000, guid: 97b17fcbd0089b1419726e41013f43be, type: 3}
+    m_FontSize: 150
+    m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 150
@@ -484,6 +508,7 @@ GameObject:
   - component: {fileID: 980288177}
   - component: {fileID: 980288176}
   - component: {fileID: 980288175}
+  - component: {fileID: 980288178}
   m_Layer: 5
   m_Name: CloseButton
   m_TagString: Untagged
@@ -553,7 +578,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 980288176}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 980288178}
+        m_MethodName: ButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &980288176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,6 +626,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980288173}
   m_CullTransparentMesh: 0
+--- !u!114 &980288178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980288173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b805afd225f3f469161992d7a6a4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1189006748
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +716,7 @@ GameObject:
   - component: {fileID: 1206145676}
   - component: {fileID: 1206145675}
   - component: {fileID: 1206145674}
+  - component: {fileID: 1206145677}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -737,7 +786,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1206145675}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1206145677}
+        m_MethodName: ButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1206145675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,6 +834,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206145672}
   m_CullTransparentMesh: 0
+--- !u!114 &1206145677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206145672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b805afd225f3f469161992d7a6a4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1275314621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1089,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8c8bbacf6f6baf341bdba4080e3a7cc7, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -1208,7 +1280,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8c8bbacf6f6baf341bdba4080e3a7cc7, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0

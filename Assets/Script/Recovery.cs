@@ -58,8 +58,8 @@ public class Recovery : Magic
 		public void effect(Player activePlayer, Player passivePlayer)
 		{
 
-			// MPが足りている場合
-			Console.WriteLine(activePlayer.GetName() + " の " + this.name);
+		// MPが足りている場合
+			LogText.AddLog(string.Format("{0} の {1}！", activePlayer.GetName(), this.name));
 			activePlayer.UseMP(this.usemp);
 
 			// 毒にかかっているかの判定
@@ -67,7 +67,7 @@ public class Recovery : Magic
 			{
 				// 対称プレイヤーが毒状態の場合
 				activePlayer.SetPoison(false);
-				Console.WriteLine(passivePlayer.GetName() + " の毒が解除された！");
+				LogText.AddLog(string.Format("{0} の 毒 が解除された！", passivePlayer.GetName()));
 				return;
 			}
 
@@ -75,7 +75,7 @@ public class Recovery : Magic
 			if (passivePlayer.isParalyze() == true)
 			{
 				activePlayer.SetParalyze(false);
-				Console.WriteLine(passivePlayer.GetName() + " の麻痺が解除された！");
+				LogText.AddLog(string.Format("{0} の 麻痺 が解除された！", passivePlayer.GetName()));
 				return;
 
 			}
