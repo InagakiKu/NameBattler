@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 975558352}
   - component: {fileID: 975558351}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BattleResult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
