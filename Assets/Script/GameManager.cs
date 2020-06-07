@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	public Text logtext;
 	public Text strategytext;
 	[HideInInspector] public string log;
+	[HideInInspector] public int battleResult;
 	private int turnNumber;
 	private int phaseNumber;
 	List<Player> aliveMembers;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
 
 	public void Start()
 	{
+		Debug.Log("GM Start");
+		this.battleResult = 0;
 		turnNumber = 0;
 		// プレイヤーの準備
 		enemyMembers = BattleStart.enemyMembers;
@@ -61,13 +64,19 @@ public class GameManager : MonoBehaviour
 	*/
 	public Player ComparateAGI(int index)
 	{
-		List<Player> firstestEnemies = this.enemyMembers.FastestMembers();
+		Debug.Log("GM ComparateAGI");
+		List <Player> firstestEnemies = this.enemyMembers.FastestMembers();
 		List<Player> firstestPlayers = this.partyMembers.FastestMembers();
 
 		//firstestEnemiesが空だった
 		if (!(firstestEnemies?.Count > 0))
 		{
 			return partyMembers.FastestMembers()[0];
+		}
+
+		if (!(firstestPlayers?.Count > 0))
+		{
+			return enemyMembers.FastestMembers()[0];
 		}
 
 		if (this.enemyMembers.FastestMembers()[0].GetAGI() > this.partyMembers.FastestMembers()[0].GetAGI())
@@ -81,15 +90,12 @@ public class GameManager : MonoBehaviour
 
 	}
 
-
-
-
 	public Party ContainsParty(Player attacker)
 	{
-		Debug.Log("BattleMain ContainParty");
+		Debug.Log("GameManager ContainParty");
 		if (enemyMembers.isExists(attacker))
 		{
-			Debug.Log("BattleMain ContainParty partyMembers");
+			Debug.Log("GameManager ContainParty partyMembers");
 
 			foreach (Player p in partyMembers.GetMembers())
 			{
@@ -98,7 +104,7 @@ public class GameManager : MonoBehaviour
 			}
 			return partyMembers;
 		}
-		Debug.Log("BattleMain ContainParty enemyMembers");
+		Debug.Log("GameManager ContainParty enemyMembers");
 		foreach (Player p in enemyMembers.GetMembers())
 		{
 			Debug.Log(p.GetName());
@@ -112,6 +118,7 @@ public class GameManager : MonoBehaviour
 	 */
 	public void StatusPrint()
 	{
+		Debug.Log("GM StatusPrint");
 		LogText.AddLog("== 敵パーティーのステータス ==");
 		// パーティー1のステータスの表示
 		for (int i = 0; i < 3; i++)
@@ -133,6 +140,7 @@ public class GameManager : MonoBehaviour
 
 	private void StatusReflection()
 	{
+		Debug.Log("GM StatusPrint");
 		// エネミーパーティーステータスをTextに表示
 		for (int i = 0; i < 3; i++)
 		{
@@ -159,7 +167,7 @@ public class GameManager : MonoBehaviour
 
 	public void NextTurn()
 	{
-		Debug.Log("BattleMain NextTurn ");
+		Debug.Log("GameManager NextTurn ");
 
 		// ==================================================
 		// バトル処理
@@ -167,30 +175,40 @@ public class GameManager : MonoBehaviour
 
 		LogText.AddLog(string.Format("- ターン{0} -{1}", turnNumber, System.Environment.NewLine));
 		this.phaseNumber = 0;
+
 		/*----------
 		 * aliveMembers =
 		 * 
 		 ----------*/
+
 		// 行動できる人間がいる間繰り返す
-		while (phaseNumber == partyMembers.FastestMembers().Count + enemyMembers.FastestMembers().Count)
+		while (0 < partyMembers.FastestMembers().Count + enemyMembers.FastestMembers().Count)
 		{
+			Debug.Log(string.Format("{0}={1}({2} + {3})", this.phaseNumber, partyMembers.FastestMembers().Count + enemyMembers.FastestMembers().Count, partyMembers.FastestMembers().Count, enemyMembers.FastestMembers().Count));
+
 			// 未行動のプレイヤーで一番AGIが高いプレイヤーが攻撃する
 			Player attacker = ComparateAGI(phaseNumber);
+			
 			// 攻撃するプレイヤーの攻撃できる対象を決める
 			Party TargetParty = ContainsParty(attacker);
+
+			Debug.Log(attacker.GetName());
+
 			// paralyzeTurn 0 の時
 			if (attacker.GetParalyzeTurn() == 0 && attacker.isParalyze())
 			{
-				Debug.Log("BattleMain NextTurn 麻痺がとける時");
+				Debug.Log("GameManager NextTurn 麻痺がとける時");
 				LogText.AddLog(string.Format("{0} の麻痺がとれた！\n", attacker.GetName()));
 				attacker.RecoveryParalyze();
 			}
 
 			LogText.AddLog(string.Format("▼ {0} の行動\n", attacker.GetName()));
+
 			// 麻痺状態でない場合の処理
 			if (!attacker.isParalyze())
 			{
-				Debug.Log("BattleMain NextTurn 麻痺になってないとき");
+				Debug.Log("GameManager NextTurn 麻痺になってないとき");
+
 				//どちらのパーティーに所属しているか
 				if (enemyMembers.isExists(attacker))
 				{
@@ -205,18 +223,26 @@ public class GameManager : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("BattleMain NextTurn 麻痺になっているとき");
+				Debug.Log("GameManager NextTurn 麻痺になっているとき");
 				LogText.AddLog(string.Format("{0} は身体が麻痺して動けない！\n", attacker.GetName()));
 			}
 
 			if (TargetParty.isLose())
 			{
-				SceneManager.LoadScene("ResultScreen");
+				if (TargetParty == enemyMembers)
+				{
+					this.battleResult = 1;
+				}
+				else
+				{
+					this.battleResult = 2;
+				}
+				return;
 			}
 
 			if (attacker.isPoison())
 			{
-				Debug.Log("BattleMain NextTurn 毒状態の時");
+				Debug.Log("GameManager NextTurn 毒状態の時");
 				attacker.ProcessPoison();
 			}
 
@@ -224,23 +250,29 @@ public class GameManager : MonoBehaviour
 			//　してたらゲーム終了
 			if (TargetParty.isLose())
 			{
-				SceneManager.LoadScene("ResultScreen");
+				if (TargetParty == enemyMembers)
+                {
+					this.battleResult = 0;
+
+				}
+                else
+                {
+					this.battleResult = 1;
+				}
+
 			}
 
 
 			attacker.ChangeActive(false);
-			Debug.Log("BattleMain NextTurn ChangeActive");
+			Debug.Log(string.Format("GameManager NextTurn ChangeActive : {0}", attacker.isActive()));
 			attacker.ChangeParalyzeTurn();
-			Debug.Log("BattleMain NextTurn ChangeParalyzeTurn");
+			Debug.Log("GameManager NextTurn ChangeParalyzeTurn");
 			LogText.AddLog("--------------------------------");
 			this.phaseNumber++;
 
 		}
 
-
 		LogText.AddLog("=================================");
-
-
 
 		// ターン終了時の処理
 		foreach (Player p in enemyMembers.AttackTarget())
@@ -252,6 +284,8 @@ public class GameManager : MonoBehaviour
 		{
 			p.ChangeActive(true);
 		}
+
+		StatusReflection();
 
 		logtext.text = LogText.GetLog();
 		turnNumber++;
@@ -267,6 +301,7 @@ public class GameManager : MonoBehaviour
 
 	public void ChangePartyStrategy(Strategy strategy, string strategyname)
     {
+		Debug.Log("GM ChangePartyStrategy");
 		partyMembers.ChangeStrategy(strategy);
 
 
@@ -275,4 +310,11 @@ public class GameManager : MonoBehaviour
 		this.strategytext = content.GetComponent<Text>();
 		this.strategytext.text = string.Format("作戦　：　{0}", strategyname);
     }
+
+	public int GetBattleResult() 
+	{
+		return this.battleResult;
+			
+	}
+
 }

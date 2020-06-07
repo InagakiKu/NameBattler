@@ -14,6 +14,8 @@ public class BattleStart : MonoBehaviour
 
     public void Start()
     {
+        Debug.Log("BattleStart Start");
+
         playerCount = StartConfirm.toggleCount;
 
         // エネミーの準備
@@ -206,6 +208,8 @@ public class BattleStart : MonoBehaviour
 
     public void ButtonClick()
     {
+        Debug.Log("BattleStart ButtonClick");
+
         switch (transform.name)
         {
             case "BackButton":
