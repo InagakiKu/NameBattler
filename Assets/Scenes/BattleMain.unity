@@ -1842,6 +1842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasDialog: {fileID: 2425848476614817164}
+  toggleGroup: {fileID: 2425848477308332127}
 --- !u!1 &1973739163
 GameObject:
   m_ObjectHideFlags: 0
@@ -3183,7 +3184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b57cbc01445d64086fb637bbec1cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleGroup: {fileID: 2425848477308332127}
 --- !u!222 &2425848476654095001
 CanvasRenderer:
   m_ObjectHideFlags: 0

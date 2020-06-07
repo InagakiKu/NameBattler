@@ -11,6 +11,7 @@ public  class BattleMain : MonoBehaviour
     [HideInInspector] public Strategy strategy;
     private Toggle toggle;
     public ToggleGroup toggleGroup;
+    public static int battleResult;
 
 
     public  void Start()
@@ -26,7 +27,13 @@ public  class BattleMain : MonoBehaviour
 
 	}
 
-     public void ChangePartyStrategy(Strategy strategy, string strategyname)
+    public int GetBattleResult()
+    {
+        battleResult = gm.GetBattleResult();
+        return battleResult;
+    }
+
+    public void ChangePartyStrategy(Strategy strategy, string strategyname)
     {
         gm.ChangePartyStrategy(strategy, strategyname);
     }
@@ -106,5 +113,5 @@ public  class BattleMain : MonoBehaviour
                 break;
         }
     }
-}
 
+}

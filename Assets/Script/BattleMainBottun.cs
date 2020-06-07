@@ -69,7 +69,16 @@ public class BattleMainBottun : MonoBehaviour
                 break;
             case "NextTurn":
                 Debug.Log("「次のターン」を押した");
+
+                //戦闘が終了しているか確認
+                if (script.GetBattleResult() != 0)
+                {
+                    SceneManager.LoadScene("ResultScreen");
+                    return;
+                }
                 script.NextTurn();
+
+
                 break;
 
             default:
