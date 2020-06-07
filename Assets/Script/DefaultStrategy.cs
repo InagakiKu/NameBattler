@@ -35,6 +35,7 @@ public class DefaultStrategy : Strategy
 			Debug.Log("DefaultStrategy Priest");
 			if (myParty.DebuffMembers().Count > 0)
 			{
+				Debug.Log("DefaultStrategy 自身のPartyに状態異常のPlayerがいる");
 				if (activePlayer.HealDebuff(activePlayer, myParty.DebuffMembers()[0]))
 				{
 					Debug.Log("DefaultStrategy Priest HealDebuff");
@@ -45,7 +46,7 @@ public class DefaultStrategy : Strategy
 			//　回復する味方がいるとき
 			if (myParty.HealMembers(50).Count > 0)
 			{
-
+				Debug.Log("DefaultStrategy 回復魔法を書けることができたとき");
 				// 回復魔法を書けることができたとき
 				if (activePlayer.HealHP(activePlayer, myParty.HealMembers(50)))
 				{
@@ -57,6 +58,7 @@ public class DefaultStrategy : Strategy
 
 			if (myParty.DebuffMembers().Count > 0)
 			{
+				Debug.Log("DefaultStrategy 状態異常魔法をかけられる敵がいるとき");
 				//　状態異常魔法をかけられる敵がいるとき
 				Player passivePlayer = myParty.DebuffMembers()[UnityEngine.Random.Range(0, myParty.DebuffMembers().Count - 1)];
 				if (activePlayer.Debuff(activePlayer, passivePlayer))
@@ -66,8 +68,9 @@ public class DefaultStrategy : Strategy
 				}
 			}
 
-			activePlayer.Attack(activePlayer, enemyParty.AttackTarget());
 			Debug.Log("DefaultStrategy Priest Attack");
+			activePlayer.Attack(activePlayer, enemyParty.AttackTarget());
+
 			return;
 		}
 

@@ -87,17 +87,11 @@ public class Party : MonoBehaviour
 	 */
 	public List<Player> AttackTarget()
 	{
-		List<Player> targetList = new List<Player>();
+		var result = from x in members
+					 where x.GetHP() > 0
+					 select x;
 
-		foreach (Player p in this.members)
-		{
-			if (p.GetHP() > 0)
-			{
-				targetList.Add(p);
-			}
-		}
-
-		return targetList;
+		return result.Distinct().ToList();
 	}
 
 	/**
@@ -122,12 +116,16 @@ public class Party : MonoBehaviour
 	 */
 	public List<Player> FastestMembers()
 	{
-		Debug.Log("Party FastestPlayer");
+		Debug.Log("Party FastestMembers");
 		var result = from x in members
 					 where x.GetHP() >0
 					 select x;
 		
-			result = from a in result
+		result = from x in result
+				 where x.GetActive()
+				 select x;
+
+		result = from a in result
 					 orderby a.GetAGI() descending
 					 select a;
 
@@ -176,7 +174,6 @@ public class Party : MonoBehaviour
 			return result.Distinct().ToList();
 
 		}
-
 
 		return result.Distinct().ToList();
 	}

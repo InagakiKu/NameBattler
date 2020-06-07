@@ -23,15 +23,7 @@ public class Paralyze : Magic
 	// =======================
 	// Getter / Setter
 	// =======================
-	// 魔法のMPの取得
-	public string GetName()
-	{
-		return this.name;
-	}
-	public int GetUseMP()
-	{
-		return this.usemp;
-	}
+
 	// =======================
 	// protected メソッド
 	// =======================
@@ -46,7 +38,7 @@ public class Paralyze : Magic
 	 * @param activePlayer : 魔法を行使するプレイヤー
 	 * @param passivePlayer : 対象プレイヤー
 	 */
-	public void effect(Player activePlayer, Player passivePlayer)
+	public override void effect(Player activePlayer, Player passivePlayer)
 	{
 		// MPが足りている場合の処理
 		// 魔法を行使する側のMPを使用する

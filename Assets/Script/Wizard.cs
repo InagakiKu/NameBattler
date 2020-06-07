@@ -29,7 +29,7 @@ public class Wizard : Player
 	/**
 	 * 名前(name)からキャラクターに必要なパラメータを生成する
 	 */
-	protected void MakeCharacter()
+	protected override void MakeCharacter()
 	{
 		// 魔術師のパラメータを名前から生成する
 		this.defaultHP = (base.GetNumber(0, 10) + 5) * 10;
@@ -63,17 +63,26 @@ public class Wizard : Player
 	 * @param attacker {@inheritDoc}
 	 * @param defender {@inheritDoc}
 	 */
-	public void Attack(Player activePlayer, List<Player> passiveMembers)
+	public override void Attack(Player activePlayer, List<Player> passiveMembers)
 	{
 		Debug.Log("Wizard Attack");
-		Player passivePlayer = passiveMembers[UnityEngine.Random.Range(0, passiveMembers.Count - 1)];
+
+		//攻撃対象の決定
+		Player passivePlayer = passiveMembers[0];
+
+		if (passiveMembers.Count > 1)
+		{
+			passivePlayer = passiveMembers[UnityEngine.Random.Range(0, passiveMembers.Count - 1)];
+
+		}
+
 		//使用する魔法を決定する
 		Magic UseMagic = this.attackMagic[UnityEngine.Random.Range(0, attackMagic.Length)];
 
-
+		Debug.Log(string.Format("Wizard Attack {0}", UseMagic.GetName()));
 		if (UseMagic.GetUseMP() <= this.mp)
 		{
-			Debug.Log("Wizard Attack 魔法使えないとき");
+			Debug.Log("Wizard Attack 魔法使えるとき");
 			UseMagic.effect(activePlayer, passivePlayer);
 			return;
 

@@ -23,15 +23,7 @@ public class Poison : Magic
 	// =======================
 	// Getter / Setter
 	// =======================
-	// 魔法のMPの取得
-	public string GetUseName()
-	{
-		return this.name;
-	}
-	public int GetUseMP()
-	{
-		return this.usemp;
-	}
+
 	// =======================
 	// protected メソッド
 	// =======================
@@ -49,7 +41,7 @@ public class Poison : Magic
 	 * @param activePlayer {@inheritDoc}
 	 * @param passivePlayer {@inheritDoc}
 	 */
-	public void effect(Player activePlayer, Player passivePlayer)
+	public override void effect(Player activePlayer, Player passivePlayer)
 	{
 		// MPが足りている場合
 		LogText.AddLog(string.Format("{0} の {1}！", activePlayer.GetName(), this.name));

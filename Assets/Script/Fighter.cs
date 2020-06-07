@@ -62,13 +62,21 @@ public class Fighter : Player
 		 * @param attacker {@inheritDoc}
 		 * @param defender {@inheritDoc}
 		 */
-		public override void Attack(Player attacker, List<Player> passiveParty)
+		public override void Attack(Player activePlayer, List<Player> passiveMembers)
 		{
 
-			Player passivePlayer = passiveParty[UnityEngine.Random.Range(0, passiveParty.Count - 1)];
+		//攻撃対象の決定
+		Player passivePlayer = passiveMembers[0];
+
+		if (passiveMembers.Count > 1)
+		{
+			passivePlayer = passiveMembers[UnityEngine.Random.Range(0, passiveMembers.Count - 1)];
+
+		}
+
 		// 与えるダメージを求める
-			LogText.AddLog(string.Format("{0} の攻撃！", attacker.GetName()));
-			int damage = attacker.CalcDamage(passivePlayer);
+		LogText.AddLog(string.Format("{0} の攻撃！", activePlayer.GetName()));
+			int damage = activePlayer.CalcDamage(passivePlayer);
 
 		// 求めたダメージを対象プレイヤーに与える
 			LogText.AddLog(string.Format("{0}に {1} のダメージ！", passivePlayer.GetName(), damage));

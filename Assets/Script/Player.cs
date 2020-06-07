@@ -246,6 +246,7 @@ public class Player
 		try
 		{
 			Debug.Log(this.name);
+
 			// バイト配列に
 			byte[] byteValue = Encoding.UTF8.GetBytes(this.name);
 
